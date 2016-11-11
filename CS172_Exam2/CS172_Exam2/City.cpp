@@ -3,19 +3,32 @@ using namespace std;
 
 City::City(string cityName)
 {
+	name = cityName;
+	population = 0;
+
 	ifstream input;
 
 	string filename = cityName + ".txt";
 	input.open(filename.c_str());
 	if (!input.fail()) // if the file exists, read the population from file
 	{
-		input >> name >> population;
+		while (!input.eof())
+		{
+			int id;
+			string firstname;
+			string lastname;
+			string favoriteColor;
+
+			input >> id >> firstname >> lastname >> favoriteColor;
+
+			if (firstname != "")
+			{
+				Citizen* temp = new Citizen(id, firstname, lastname, favoriteColor);
+
+				addCitizen(temp);
+			}
+		}
 		input.close();
-	}
-	else
-	{
-		name = cityName;
-		population = 0;
 	}
 }
 
@@ -26,7 +39,17 @@ City::~City() // sets population to file <cityName> <population>
 	output.open(filename.c_str());
 	if (!output.fail())
 	{
-		output << name << population << endl;
+		for (int i = 0; i < citizens.size(); i++)
+		{
+			Citizen temp = citizens.at(i);
+
+			int id = temp.getId();
+			string firstname = temp.getFirstName();
+			string lastname = temp.getLastName();
+			string favoriteColor = temp.getFavoriteColor();
+
+			output << id << " " << firstname << " " << lastname << " " << favoriteColor << endl;
+		}
 		return;
 	}
 	else // the file didn't open...
@@ -50,12 +73,32 @@ Citizen * City::getCitizenAtIndex(int index)
 
 void City::addCitizen(Citizen * citizen)
 {
-	citizens.push_back(citizen);
+	Citizen* c = new Citizen(citizen->getId(), citizen->getFirstName(), citizen->getLastName(), citizen->getFavoriteColor());
+	citizens.push_back(c);
 	population++;
 }
 
 Citizen * City::getCitizenWithId(int id)
 {
+	// 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	for (int i = 0; i < citizens.size(); i++)
 	{
 		Citizen temp = citizens.at(i);
