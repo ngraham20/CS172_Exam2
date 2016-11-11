@@ -1,17 +1,8 @@
-//
-
-//  main.cpp
-
-//  CS172-Exam2
-
-//
-
-//  Created by Stephen Johnson on 11/7/16.
-
-//  Copyright © 2016 Glacier Peak Studios LLC. All rights reserved.
-
-//
-
+/*
+	I affirm that all code given below was written soley by me,
+	Nathaniel Lewis Graham, and that any help I received adhered 
+	to the rules stated for this exam.
+*/
 #include <iostream>
 
 #include "Citizen.h"
@@ -161,6 +152,7 @@ int main() {
 		{
 
 			Richard->setFavoriteColor("Purple");
+			// breakpoint location
 
 		}
 

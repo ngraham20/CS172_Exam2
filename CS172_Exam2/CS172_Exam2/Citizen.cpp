@@ -1,3 +1,8 @@
+/*
+I affirm that all code given below was written soley by me,
+Nathaniel Lewis Graham, and that any help I received adhered
+to the rules stated for this exam.
+*/
 #include "Citizen.h"
 
 void Citizen::setFavoriteColor(string color) 
@@ -13,13 +18,8 @@ Citizen::Citizen(int id, string firstName, string lastName, string color) // thi
 	this->favoriteColor = color;
 }
 
-Citizen::Citizen(Citizen * citizen) // this creates a citizen to be added to a city
+Citizen::Citizen(Citizen * citizen) // this creates a citizen out of a pointer to be added to a city
 {
-	/*this->id = citizen->id;
-	this->firstName = citizen->firstName;
-	this->lastName = citizen->lastName;
-	this->favoriteColor = citizen->favoriteColor;*/
-
 	id = citizen->getId();
 	firstName = citizen->getFirstName();
 	lastName = citizen->getLastName();

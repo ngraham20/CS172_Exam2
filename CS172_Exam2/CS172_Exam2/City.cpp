@@ -1,10 +1,15 @@
+/*
+I affirm that all code given below was written soley by me,
+Nathaniel Lewis Graham, and that any help I received adhered
+to the rules stated for this exam.
+*/
 #include "City.h"
 using namespace std;
 
 City::City(string cityName)
 {
-	name = cityName;
-	population = 0;
+	name = cityName; // initializes cityName
+	population = 0; // initializes population count
 
 	ifstream input;
 
@@ -14,21 +19,24 @@ City::City(string cityName)
 	{
 		while (!input.eof())
 		{
+			// sets the variables to be loaded from file
 			int id;
 			string firstname;
 			string lastname;
 			string favoriteColor;
 
-			input >> id >> firstname >> lastname >> favoriteColor;
+			input >> id >> firstname >> lastname >> favoriteColor; // loads variables from file
 
-			if (firstname != "")
+			if (firstname != "") // prevents adding blank names
 			{
-				Citizen* temp = new Citizen(id, firstname, lastname, favoriteColor);
+				Citizen* temp = new Citizen(id, firstname, lastname, favoriteColor); // creates new pointer to be added to the system
 
-				addCitizen(temp);
+				addCitizen(temp); // sends temp to the City
+
+				delete temp; // deletes temp
 			}
 		}
-		input.close();
+		input.close(); // closes document
 	}
 }
 
@@ -39,6 +47,7 @@ City::~City() // sets population to file <cityName> <population>
 	output.open(filename.c_str());
 	if (!output.fail())
 	{
+		// sends City info to file.
 		for (int i = 0; i < citizens.size(); i++)
 		{
 			Citizen temp = citizens.at(i);
@@ -68,58 +77,39 @@ int City::populationSize() { return population; }
 
 Citizen * City::getCitizenAtIndex(int index)
 {
-	return citizens.at(index);
+	return citizens.at(index); // returns the memory location of the citizen at index
 }
 
 void City::addCitizen(Citizen * citizen)
 {
 	Citizen* c = new Citizen(citizen->getId(), citizen->getFirstName(), citizen->getLastName(), citizen->getFavoriteColor());
-	citizens.push_back(c);
+	citizens.push_back(c); // adds the memory location of c to citizens (therefore deleting c will affect citizens as well)
 	population++;
 }
 
 Citizen * City::getCitizenWithId(int id)
 {
-	// 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	for (int i = 0; i < citizens.size(); i++)
+	for (int i = 0; i < citizens.size(); i++) // searches citizens for any citizen with unique id
 	{
-		Citizen temp = citizens.at(i);
+		Citizen temp = citizens.at(i); // creates a temporary citizen
 
-		if (temp.getId() == id)
+		if (temp.getId() == id) // checks the citizen's id
 		{
-			Citizen* citizenReturn = new Citizen(temp.getId(), temp.getFirstName(), temp.getLastName(), temp.getFavoriteColor());
-			return citizenReturn;
+			return citizens.at(i); // returns it if the id is correct
 		}
 	}
 }
 
 vector<Citizen*> City::getCitizensForFavoriteColor(string color)
 {
-	vector<Citizen*>* citizensForColor = new vector<Citizen*>;
+	vector<Citizen*>* citizensForColor = new vector<Citizen*>; // creates a vector to be returned
 
-	for (int i = 0; i < citizens.size(); i++)
+	for (int i = 0; i < citizens.size(); i++) // loops through all citizens
 	{
-		Citizen temp = citizens.at(i);
-		if (temp.getFavoriteColor() == color)
+		Citizen temp = citizens.at(i); // creates a temp citizen
+		if (temp.getFavoriteColor() == color) // checks the citizen for favorite color
 		{
+			// creates a return pointer holding the value of temp within it
 			Citizen* citizenReturn = new Citizen(temp.getId(), temp.getFirstName(), temp.getLastName(), temp.getFavoriteColor());
 			citizensForColor->push_back(citizenReturn);
 		}
